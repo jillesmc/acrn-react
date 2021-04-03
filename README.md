@@ -1,6 +1,6 @@
 An implementation of ACRN tinnitus procotol in React.
 
-Developed [Headphones James](https://github.com/headphonejames/acrn-react)
+Developed by [Headphones James](https://github.com/headphonejames/acrn-react)
 
 Packaged into Electron by Jilles Cardoso
 
