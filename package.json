@@ -1,12 +1,22 @@
 {
   "name": "acrn",
-  "homepage": "http://www.generalfuzz.net/acrn",
+  "homepage": "./",
   "version": "0.1.0",
+  "main": "public/electron.js",
+  "author": {
+    "name": "Headphones James & Jilles Cardoso"
+  },
   "private": true,
   "devDependencies": {
-    "react-scripts": "1.1.4"
+    "concurrently": "^6.0.0",
+    "electron": "^12.0.2",
+    "electron-builder": "^22.10.5",
+    "react-scripts": "1.1.4",
+    "wait-on": "^5.3.0"
   },
   "dependencies": {
+    "bootstrap": "3.3.7",
+    "electron-is-dev": "^2.0.0",
     "rc-slider": "^8.6.1",
     "rc-tooltip": "^3.7.2",
     "react": "^16.3.2",
@@ -15,10 +25,25 @@
     "startaudiocontext": "^1.2.1",
     "tone": "^0.12.80"
   },
+  "build": {
+    "appId": "br.com.jilles.acrn",
+    "productName": "ACRN",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories":{
+      "buildResources": "assets"
+    }
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dist": "electron-builder build",
+    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "preelectron-pack": "yarn build",
+    "electron-pack": "electron-builder --win portable --ia32 -c.extraMetadata.main=build/electron.js"
   }
 }
